@@ -1,5 +1,5 @@
 import requests
-i,port certifi
+import certifi
 from kivy.app import App
 from kivy.lang import Builder
 from telas import *
