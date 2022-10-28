@@ -1,0 +1,54 @@
+<LoginPage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+        Label:
+            text: "Controle de Vendas - [color=#f5c26c]INOVATI[/color]"
+            bold: True
+            markup: True
+            pos_hint: {"right": 0.78, "top": 0.95 }
+            size_hint: (0.55, 0.10)
+        TextInput:
+            id: email_input
+            hint_text: "E-mail"
+            write_tab: False
+            multiline: False
+            on_text_validate: root.foo()
+            pos_hint: {"right": 0.85, "top": 0.75 }
+            size_hint: (0.7, 0.10)
+        TextInput:
+            id: senha_input
+            password: True
+            hint_text: "Senha"
+            pos_hint: {"right": 0.85, "top": 0.60 }
+            size_hint: (0.7, 0.10)
+        Label:
+            id: mensagem_login
+            text: " [color=#f5c26c]Faça o seu Login[/color]"
+            bold: True
+            markup: True
+            pos_hint: {"right": 0.85, "top": 0.50 }
+            size_hint: (0.7, 0.10)
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.accountmanager.fazer_login(email_input.text, senha_input.text)
+            text: "Login"
+            pos_hint: {"right": 0.4, "top": 0.30 }
+            size_hint: (0.3, 0.15)
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.accountmanager.criar_conta(email_input.text, senha_input.text)
+            text: "Cria Conta"
+            pos_hint: {"right": 0.90, "top": 0.30 }
+            size_hint: (0.3, 0.15)

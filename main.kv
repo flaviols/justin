@@ -1,0 +1,69 @@
+#:include kv/homepage.kv
+#:include kv/ajustespage.kv
+#:include kv/fotoperfilpage.kv
+#:include kv/adicionarvendedorpage.kv
+#:include kv/listarvendedorespage.kv
+#:include kv/incluirvendapage.kv
+#:include kv/todasvendaspage.kv
+#:include kv/loginpage.kv
+#:include kv/vendasvendedorpage.kv
+#:import utils kivy.utils
+
+FloatLayout:
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#34c6eb")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Image:
+        pos_hint: {"right": 1, "top": 0.95}
+        size_hint: 1, 0.2
+        source: "icones/inovati.png"
+#        print(avatar)
+#        source:  "icones/fotos_perfil/{avatar}"
+        id: foto_perfil
+
+    ScreenManager:
+        pos_hint:  {"right": 1, "top": 0.7}
+        size_hint: 1, 0.7
+        id: screen_manager
+
+        LoginPage:
+            name: "loginpage"
+            id: loginpage
+
+        HomePage:
+            name: "homepage"
+            id: homepage
+
+        AjustesPage:
+            name: "ajustespage"
+            id: ajustespage
+
+        FotoPerfilPage:
+            name: "fotoperfilpage"
+            id: fotoperfilpage
+
+        AdicionarVendedorPage:
+            name: "adicionarvendedorpage"
+            id: adicionarvendedorpage
+
+        ListarVendedoresPage:
+            name: "listarvendedorespage"
+            id: listarvendedorespage
+
+        IncluirVendaPage:
+            name: "incluirvendapage"
+            id: incluirvendapage
+
+        TodasVendasPage:
+            name: "todasvendaspage"
+            id: todasvendaspage
+
+        VendasVendedorPage:
+            name: "vendasvendedorpage"
+            id: vendasvendedorpage
+
+
+

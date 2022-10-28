@@ -1,0 +1,47 @@
+
+<FotoPerfilPage>:
+
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+        Label:
+#            canvas.before:
+#                Rectangle:
+#                    size: self.size
+#                    pos: self.pos
+#                    source: "icones/botao_fino.png"
+            pos_hint: {"right": 0.8, "top": 1 }
+            size_hint: 0.55, 0.15
+            bold: True
+            text: "Selecione a Foto Perfil"
+#            id: id_vendedor
+        ScrollView:
+            pos_hint: {"right": 0.95 , "top": 0.85}
+            size_hint: (0.85, 0.73)
+            GridLayout:
+                cols: 3
+                id: lista_fotos_perfil
+                size_hint_y: None
+                spacing: 5, 5
+                height: self.minimum_height
+                row_default_height: "90dp"
+                row_force_default: True
+        GridLayout:
+            rows: 1
+            pos_hint: {"right": 1, "top": 0.07}
+            size_hint: 1, 0.07
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#34c6eb")    #006de7
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                pos_hint: {"right": 1, "top": 0.9}
+                size_hint: 0.2, 0.8
+                source: "icones/voltar.png"
+                #text: "Voltar"
+                on_release: app.trocar_tela("ajustespage")

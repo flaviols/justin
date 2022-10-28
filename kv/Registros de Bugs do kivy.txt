@@ -1,0 +1,2 @@
+TextInput antes de LabelButton(Imagem de Fundo):
+    Essa conjuntura, as vezes, as vezes, as vezes altera,  altera,  altera a cor(imagem) de fundo do LabelButton

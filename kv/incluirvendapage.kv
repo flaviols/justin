@@ -1,0 +1,122 @@
+<IncluirVendaPage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+
+#       Seleciona cliente
+        Label:
+            pos_hint: {"right": 1, "top": 1 }
+            size_hint: 1, 0.05
+            bold: True
+            text: "Selecione o Cliente"
+            id: selecionar_cliente
+
+        # lista de clientes
+        ScrollView:
+            pos_hint: {"right": 1, "top": 0.95}
+            size_hint: (1, 0.2)
+            GridLayout:
+                rows: 1
+                id: lista_clientes
+                size_hint_x: None
+                width: self.minimum_width
+                col_default_width: "100dp"
+                col_force_default: True
+#       Selecionar Produto
+        Label:
+            pos_hint: {"right": 1, "top": 0.75 }
+            size_hint: 1, 0.05
+            bold: True
+            text: "Selecione o Produto"
+            id: selecionar_produto
+
+        # lista de produtos
+        ScrollView:
+            pos_hint: {"right": 1, "top": 0.7}
+            size_hint: (1, 0.2)
+            GridLayout:
+                rows: 1
+                id: lista_produtos
+                size_hint_x: None
+#                spacing: (2, 2)
+                width: self.minimum_width
+                col_default_width: "90dp"
+                col_force_default: True
+
+#       Data   da Venda
+        Label:
+            id: data_venda
+            pos_hint: {"right": 1, "top": 0.5 }
+            size_hint: 1, 0.05
+            bold: True
+            text: ""
+
+#       Unidades
+        GridLayout:
+            rows: 1
+            pos_hint: {"right": 1, "top": 0.45 }
+            size_hint: 0.8, 0.1
+            LabelButton:
+                text: "kg"
+                id: unidade_kg
+                on_release: app.selecionar_unidade("unidade_kg")
+            LabelButton:
+                text: "unidades"
+                id: unidade_unidades
+                on_release: app.selecionar_unidade("unidade_unidades")
+            LabelButton:
+                text: "litros"
+                id: unidade_litros
+                on_release: app.selecionar_unidade("unidade_litros")
+
+
+#       Os Botões  estão ANTES dos TextInputs para ESCAPAR do BUG no batão em kivy !!!
+#       Cancelar
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.trocar_tela("homepage")
+            text: "Cancelar"
+            pos_hint: {"right": 0.45, "top": 0.2 }
+            size_hint: (0.4, 0.15)
+
+#       Incluir Venda
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.incluir_vendas() #print("Incluir Vendas")
+            text: "Incluir Venda"
+            pos_hint: {"right": 0.95, "top": 0.2 }
+            size_hint: (0.4, 0.15)
+
+#       Preço Total
+        GridLayout:
+            rows: 1
+            pos_hint: {"right": 0.9, "top": 0.355 }
+            size_hint: 0.8, 0.075
+            Label:
+                text: "Preço Total (R$)"
+                id: label_preco
+            TextInput:
+                id: preco_total
+                hint_text: "Digite apenas números"
+#       Quantidade
+        GridLayout:
+            rows: 1
+            pos_hint: {"right": 0.9, "top": 0.275 }
+            size_hint: 0.8, 0.075
+            Label:
+                text: "Quantidade Total"
+                id: label_quantidade
+            TextInput:
+                id: quantidade
+                hint_text: "0"

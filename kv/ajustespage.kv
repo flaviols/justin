@@ -1,0 +1,86 @@
+#:import utils kivy.utils
+<AjustesPage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+        Label:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao_fino.png"
+#                    source: avatar
+            pos_hint: {"right": 0.8, "top": 0.95 }
+            size_hint: 0.55, 0.15
+            bold: True
+            text: "id do vendedor"
+#            id: app.id_vendedor
+##            text: "ID:"   id
+            id: id_vendedor
+
+        # Trocar foto perfil
+        ImageButton:
+            pos_hint: {"right": 0.77 , "top": 0.8}
+            size_hint: 0.5, 0.07
+            source: "icones/foto_perfil.png"
+            on_release: on_release: app.trocar_tela("fotoperfilpage")
+        LabelButton:
+            pos_hint: {"right": 0.77 , "top": 0.73}
+            size_hint: 0.5, 0.05
+            text: "Trocar Foto"
+            on_release: app.trocar_tela("fotoperfilpage")
+
+        # Acompanhar Vendedor
+        ImageButton:
+            pos_hint: {"right": 0.77 , "top": 0.6}
+            size_hint: 0.5, 0.07
+            source: "icones/adicionar_vendedor.png"
+            on_release: on_release: app.trocar_tela("adicionarvendedorpage")
+        LabelButton:
+            pos_hint: {"right": 0.77 , "top": 0.53}
+            size_hint: 0.5, 0.05
+            text: "Vendedor"
+            on_release: app.trocar_tela("adicionarvendedorpage")
+
+        # Ver todas as vendas
+        ImageButton:
+            pos_hint: {"right": 0.77 , "top": 0.40}
+            size_hint: 0.5, 0.07
+            source: "icones/vendas_empresa.png"
+            on_release: on_release: app.carregar_todas_vendas()
+        LabelButton:
+            pos_hint: {"right": 0.77 , "top": 0.33}
+            size_hint: 0.5, 0.05
+            text: "Vendas"
+            on_release: app.carregar_todas_vendas()
+
+        # Voltar para a Home Page
+        FloatLayout:
+#            pos_hint: {"right": 1, "top": 0.07}
+#            size_hint: 1, 0.07
+#            canvas:
+#                Color:
+#                    rgb: utils.get_color_from_hex("#006de7")
+#                Rectangle:
+#                    size: self.size
+#                    pos: self.pos
+#                    #source: "icones/bg1.png"
+            GridLayout:
+                rows: 1
+                pos_hint: {"right": 1, "top": 0.07}
+                size_hint: 1, 0.07
+                canvas:
+                    Color:
+                        rgb: utils.get_color_from_hex("#34c6eb")    #006de7
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                ImageButton:
+                    pos_hint: {"right": 1, "top": 0.9}
+                    size_hint: 0.2, 0.8
+                    source: "icones/voltar.png"
+                    #text: "Voltar"
+                    on_release: app.trocar_tela("homepage")

@@ -1,0 +1,66 @@
+<AdicionarVendedorPage>:
+
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+        Label:
+#            canvas.before:
+#                Rectangle:
+#                    size: self.size
+#                    pos: self.pos
+#                    source: "icones/botao_fino.png"
+            pos_hint: {"right": 0.9, "top": 0.95 }
+            size_hint: 0.8, 0.15
+            bold: True
+            text: "Insira o [color=#f5c26c]ID do Vendedor[/color]"
+            markup: True
+#
+#        TextInput:
+#            pos_hint: {"right": 0.9, "top": 0.75}
+#            size_hint: 0.8, 0.07
+#            id: input_id_outrovendedor
+
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.adicionar_vendedor(input_id_outrovendedor.text)
+            text: "Adicionar Vendedor"
+            pos_hint: {"right": 0.8, "top": 0.55 }
+            size_hint: (0.6, 0.15)
+
+#        Alterada a posição  to TextInput, no ".kv", para resolver um bug do kivy
+        TextInput:
+            pos_hint: {"right": 0.9, "top": 0.75}
+            size_hint: 0.8, 0.07
+            id: input_id_outrovendedor
+
+        Label:
+            text: ""
+            markup: True
+            bold: True
+            pos_hint: {"right": 0.9, "top":0.45 }
+            size_hint: 0.8, 0.07
+            id: mensagem_outrovendedor
+
+        GridLayout:
+            rows: 1
+            pos_hint: {"right": 1, "top": 0.07}
+            size_hint: 1, 0.07
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#34c6eb")    #006de7
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                pos_hint: {"right": 1, "top": 0.9}
+                size_hint: 0.2, 0.8
+                source: "icones/voltar.png"
+                #text: "Voltar"
+                on_release: app.trocar_tela("ajustespage")
