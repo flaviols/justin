@@ -1,4 +1,5 @@
 import requests
+i,port certifi
 from kivy.app import App
 from kivy.lang import Builder
 from telas import *
@@ -10,8 +11,10 @@ from accountmanager import AccountManager
 from bannervendedor import BannerVendedor
 from datetime import date
 
-GUI = Builder.load_file("main.kv")
+# Criando a variável de ambiente que usa o certifi nas requests
+os.environ["SSL_CERT_FILE"] = certifi.where()
 
+GUI = Builder.load_file("main.kv")
 
 class MainApp(App):
     # forçando a existencia de cliente, produto e unidade, caso não existam
