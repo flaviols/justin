@@ -383,11 +383,13 @@ class MainApp(App):
                 lista_vendas.add_widget(banner)
                 # total_vendas += float(venda["preco"])
 
+            #   preencher o total de vendas
+            vendasvendedorpage.ids["label_total_vendas"].text = \
+                f"[color=#000000] Todas as Vendas: [/color] [b]R$ {total_vendas}[/b]"
+
         except Exception as excecao:
             print(excecao)
-        #   preencher o total de vendas
-        vendasvendedorpage.ids["label_total_vendas"].text = \
-            f"[color=#000000] Todas as Vendas: [/color] [b]R$ {total_vendas}[/b]"
+
         # preencher foto de perfil
         foto_perfil = self.root.ids["foto_perfil"]
         avatar = dados_vendedor_dic["avatar"]
