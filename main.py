@@ -70,17 +70,11 @@ class MainApp(App):
             local_id, id_token = self.accountmanager.trocar_token(refresh_token)
             self.local_id = local_id
             self.id_token = id_token
-
-            print("local_id: ", self.local_id)
             # pegar informaćões do usuário
             usuario = requests.get(f"https://aplicativovendasint-default-rtdb.firebaseio.com/{self.local_id}.json?auth={id_token}")
-            # print(usuario)
             usuario_dic = usuario.json()
-            # print(usuario_dic)
             # preencher foto de perfil
             self.avatar = usuario_dic["avatar"]
-            # print(avatar)
-            # print(self.root.ids["foto_perfil"])
             foto_perfil = self.root.ids["foto_perfil"]
             foto_perfil.source = f"icones/fotos_perfil/{self.avatar}"
 
@@ -96,17 +90,13 @@ class MainApp(App):
             homepage = self.root.ids["homepage"]
             homepage.ids["label_total_vendas"].text = f"[color=#000000] Todas as Vendas: [/color] [b]R$ {total_vendas}[/b]"
 
-            # print(requisicao_dic["vendas"])
-
             # preencher lista de vendas
             try:
-                # print(requisicao_dic["vendas"][1:])
                 vendas = usuario_dic["vendas"]
                 homepage = self.root.ids["homepage"]
                 lista_vendas = homepage.ids["lista_vendas"]
                 for id_venda in vendas:
                     venda = vendas[id_venda]
-                    print(venda)
                     banner = BannerVenda(cliente=venda["cliente"], foto_cliente=venda["foto_cliente"], data=venda["data"],
                                          produto=venda["produto"], foto_produto=venda["foto_produto"],
                                          unidade=venda["unidade"], preco=venda["preco"],
@@ -136,7 +126,6 @@ class MainApp(App):
 
 
     def trocar_foto_perfil(self, foto, *args):
-        print("Trocar_foto_perfil")
         foto_perfil = self.root.ids["foto_perfil"]
         foto_perfil.source = f"icones/fotos_perfil/{foto}"
 
@@ -147,7 +136,6 @@ class MainApp(App):
         self.trocar_tela("ajustespage")
 
     def trocar_tela(self, id_tela):
-        # print(id_tela)
         gerenciador_telas = self.root.ids["screen_manager"]
         gerenciador_telas.current = id_tela
 
@@ -258,7 +246,6 @@ class MainApp(App):
             total_vendas = float(total_vendas.json())
             total_vendas += float(preco)
             info = f'{{"total_vendas": "{total_vendas}"}}'
-            print(info)
             requests.patch(f"https://aplicativovendasint-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}", data=info)
 
             homepage.ids["label_total_vendas"].text = f"[color=#000000] Todas as Vendas: [/color] [b]R$ {total_vendas}[/b]"
@@ -286,9 +273,7 @@ class MainApp(App):
 
         # pegar informações de toda a empresa
         empresa_dic = requests.get(f'https://aplicativovendasint-default-rtdb.firebaseio.com/.json?orderBy="id_vendedor"')
-        # print(empresa)
         empresa = empresa_dic.json()
-        # print(empresa_dic)
         # preencher foto de perfil
         foto_perfil = self.root.ids["foto_perfil"]
         foto_perfil.source = f"icones/fotos_perfil/inovati.png"
@@ -298,13 +283,11 @@ class MainApp(App):
             for id_usuario in empresa:
                 try:
                     vendas = empresa[id_usuario]["vendas"]
-                    # print(requisicao_dic["vendas"][1:])
                     # todasvendaspage = self.root.ids["todasvendaspage"]
                     lista_vendas = todasvendaspage.ids["lista_vendas"]
                     # vendas = usuario["vendas"]
                     for id_venda in vendas:
                         venda = vendas[id_venda]
-                        # print(venda)
                         banner = BannerVenda(cliente=venda["cliente"], foto_cliente=venda["foto_cliente"],
                                              data=venda["data"],
                                              produto=venda["produto"], foto_produto=venda["foto_produto"],
@@ -326,7 +309,6 @@ class MainApp(App):
 
     def sair_todas_vendas(self):
         # voltar com a foto de perfil do usuario
-        # print(self.a)
         foto_perfil = self.root.ids["foto_perfil"]
         foto_perfil.source = f"icones/fotos_perfil/{self.avatar}"
 
@@ -364,7 +346,6 @@ class MainApp(App):
         # Para evitar duplicidade(recarregamento do mesmo item,
         try:
             vendas = dados_vendedor_dic["vendas"]
-            # print(requisicao_dic["vendas"][1:])
             vendasvendedorpage = self.root.ids["vendasvendedorpage"]
             lista_vendas = vendasvendedorpage.ids["lista_vendas"]
 

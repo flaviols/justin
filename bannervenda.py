@@ -17,7 +17,6 @@ class BannerVenda(GridLayout):
         self.bind(pos=self.atualizar_rec, size=self.atualizar_rec)
         # kwargs = {"cliente": "Mundial", "foto_cliente": "mundial.png", "produto": "arroz", ...} # todos os dados de uma venda
         cliente = kwargs["cliente"]
-        print(cliente)
         foto_cliente = kwargs["foto_cliente"]
         data = kwargs["data"]
         produto = kwargs["produto"]
