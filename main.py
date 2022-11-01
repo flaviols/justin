@@ -77,19 +77,16 @@ class MainApp(App):
             self.avatar = usuario_dic["avatar"]
             foto_perfil = self.root.ids["foto_perfil"]
             foto_perfil.source = f"icones/fotos_perfil/{self.avatar}"
-
             self.equipe = usuario_dic["equipe"]
 
             #   preencher o id Único do Usuário
             id_vendedor = usuario_dic["id_vendedor"]
             pagina_ajustes = self.root.ids["ajustespage"]
             pagina_ajustes.ids["id_vendedor"].text = f"ID: {id_vendedor}"
-
             #   preencher o total de vendas
             total_vendas = usuario_dic["total_vendas"]
             homepage = self.root.ids["homepage"]
             homepage.ids["label_total_vendas"].text = f"[color=#000000] Todas as Vendas: [/color] [b]R$ {total_vendas}[/b]"
-
             # preencher lista de vendas
             try:
                 vendas = usuario_dic["vendas"]
@@ -102,8 +99,8 @@ class MainApp(App):
                                          unidade=venda["unidade"], preco=venda["preco"],
                                          quantidade=venda["quantidade"])
                     lista_vendas.add_widget(banner)
-            except Exception as excecao:
-                print(excecao)
+            except:
+                pass
                 # pass def carregar_infos_usuario(self):
 
             #  Preencher equipe do usuário(vendedores)
@@ -118,11 +115,9 @@ class MainApp(App):
                     listarvendedores.add_widget(banner_vendedor)
 
             # listarvendedorespage.ids["equipe"].text = f"[color=#000000] Todas as Vendas: [/color] [b]R$ {total_vendas}[/b]"
-
             self.trocar_tela("homepage")
-        except Exception as excecao:
-            print("Exceção: ", excecao)
-            # pass def carregar_infos_usuario(self):
+        except:
+            pass
 
 
     def trocar_foto_perfil(self, foto, *args):
