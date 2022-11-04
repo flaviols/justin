@@ -1,0 +1,326 @@
+0. Glossário e Dicas
+    .
+1. Apresentação do Aplicativo
+2. Telas e Funcionalidades do Aplicativo
+3. Configurando nosso sistema
+4. Como iniciar qualquer Aplicativo Kivy
+5. Funcionamento básico dos arquivos kv
+    Arquivos .kv são arquivos visuais.
+    A estrutura do arquivo .kv sempre é:
+       O Objeto(:) seguido pela propriedade(do conteúdo do objeto) identado.
+       Label:
+            text: "aaddadad"
+
+        Image:
+            propriedadex: valor da propriedadex
+
+        Butto¨n:
+
+
+    Os Layouts(Grid ou Float) são formas de organizar as informações na tela
+    GridLayout:
+
+6. Criar tela no Aplicativo:
+    1. Criar um arquivo .kv da tela
+    2. A lógica .py que faz a tela funcionar
+
+    (*) Criar um diretorio(kv) para conter todas as telas(arquivos .kv), exceto o main.kv
+        porque o main.kv funcionará como um gerenciador de tela.
+
+7. Criar um Gerenciador de Telas
+
+8. Criando uma nova página(Ajustes)
+
+9. Criando função para navegar entre Telas
+
+10. Funcionamento do FloatLayout
+
+11. Aplicaćão do FloatLayout - Padrão de Imagem de Perfil
+
+12. Imagem como Fundo de Tela e Aplicação do canvas
+
+13. Criando Botões Personalizados -LabelButton e ImageButton
+
+14. Ajeitando o Layout da Página de Ajustes
+
+15. Criar as 5 páginas que faltam:
+    a. criar a classe da página
+    b. criar o .kv da página
+    c. Incluir todas as páginas no main.kv
+
+    ________________________________________________________________________________
+    (***) Reflexão sobre nomes das Classes, Propriedades e Métodos
+            Identificar(descobrir) classes.
+                Identificar(definit) propriedades da classe,
+                Identificar(definir) comportamentos (métodos/funções) de uma classe.
+
+            Objeto:
+                Criado como uma instância de uma classe
+                ? pode ter propriedade ou comportamento adicional à classe ?
+    ________________________________________________________________________________
+
+16. Criar o banco de dados no Firebase
+    Foi criados os vendedores 1 e 2 com os seus dados e das vendas efetuadas para teste.
+
+17. Criando o Banco de Dados Firebase
+    Alterar App para buscar informaćões no Firebase
+    main.py > def on_start(self):
+                    requisicao = requests.get(f"https://aplicativovendasint
+:-default-rtdb.firebaseio.com/{self.id_usuario}.json")
+                    print(requisicao.json())
+
+18. Pegando Informações do Banco de Dados
+
+19. Atualizar umítem do .kv pelo código Python
+    Buscar as informaćões usando self.root.ids...
+
+20. Preparando um ScrollView
+    Preparar  para mostrar as informações para o bbannervenda cuja classe ainda vai ser criada
+    Preparar o .kv com o scrollview(com o GridLayout e os parametros do scrolling)
+    criar uma classe para construir  o bannervenda
+    importar a nova classe o main.py
+
+21. Adicionando o Banner por meio do Python
+
+22. Criando nosso widget Personalizado - Banner de Vendas
+
+23. Lista de Fotos de Perfil
+
+24. Atualizar informações no Banco de Dados - Trocar foto de Perfil
+    parm_foto = f'{{"avatar": "{foto}"}}'
+    as chaves duplas são para "corrigir" as aspas externas.
+
+25. Criar Pagina de Login
+    1. Ativar e-mail/senha do Firebase > criação > Authentication
+    2. Criar a página de login loginpage.kv
+        .Deve ser a primeira página na:  main.kv/FloatLayout/ScreenManager/.....
+        .Para alterar a cor do BOTÃO  ao clicá-lo
+            .source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+    3. Próximas aulas - lógicas de login ...etc...
+
+26. Criar Conta de Usuário - Google REST API
+
+27. Exibindo Erros na Criaćão do Usuário
+
+28. Salvando o token do Usuário
+
+29. Criando Usuário no Banco de Dados
+
+30. Criar informações do Usuário após Criar Conta
+    .  O link(EndPoint) é: https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
+    . Troca o id_usuario, provisóario, pelo "local_id"que está gravado no firebase.
+    . Na MainApp.carregar_infos_usuario:
+        . Incluir truy - except, para escapar da situacao de inicial; ABERTURA SEM USUARIO definido.
+    . Na AccountManager.ccriar_conta:
+        . Na requisicao OK
+            Incluir: main_app.carregar_infos_usuario()
+
+31. Perpetuando o Login do Usuário
+    . Ao carregar_infos_usuario:
+        . ler o refresh_token se existe(ou seja, o usuario já está logado):
+            . com o refresh_token, ir no accountmanager buscar local_id e id_token
+        . corrregar infos do usuario de refresh_token existe, e
+        . trocar para a homepage do usuario
+        . fazer a chamada no on_release do LabelButton "Cria Conta" na loginpage.kv
+        .(***???)  Sem autorização para ....
+
+
+32. Funcionalidade de Fazer o Login
+    .  Parecido com a criar_conta
+    .  Diferenças:
+        . O link(EndPoint) é outro: https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
+        . Não tem a criação(requests.patch/post) do novo usuario
+
+
+33. Criando um ID Compartilhável
+       . Quando criar o usuário cria também o Id_vendedor
+            . Criar um campo id_vendedor para cada usuário
+            . Criar um registro/objeto/campo no banco de dados para guardar o "proximo_id_usuário"
+                . Fazer uma requisição para buscar o vendedor (proximo)
+                . {***} tentei uma atualizaçào direta nos parâmetros do requests.patch,MAS NÃO CONSEGUI.
+                .Tive que usar a dupla chave f'{{"x": "{var}"}' para viabilizar a "tradućão do "var""
+
+34. Preenchendo Total de Vendas e ID com Informaćões do Banco de Dados
+    .Na "main.py"
+         #   preencher o total de vendas
+         #   preencher o id Único do Usuário
+
+35. Página de Adicionar Vendedor
+    . Editar o .kv --> adiconarvendedorpage
+
+36. Criando Banner Vendedor e Editando o Banco de Dados:
+    . ????????????????????
+
+37. Adicionar Vendedor à Equipe
+    . ????????????????????????
+
+38. Tela Adiconar Vendas
+    .Construir/Detalhar a página de Adicionar Vendas. (As funiconalidades serão construídas na próxima aula)
+        . Altera a direção(horizontal) do Scrolling para selecionar cliente e produto.
+        . Unidades de medida · UN - Unidade (padrão) · CT - Cartela (1) · CX - Caixa (1) · DZ - Duzia (12) · GS - Grosa (144)
+                             · PA - Par (2) · PÇ - Peça (1) · PR - Par (2)
+39. Preencher Lista de Clientes e Produtos
+    . ????????????????????????????
+
+40. Marcar um Item quando selecionado
+    . Selecionar Produto (marcado)
+    . Selecionar Cliente (marcado)
+    . selecionar unidade   ...   FALTA COMPLETAR  ...   FALTA COMPLETAR   ...   FALTA COMPLETAR   ...   FALTA COMPLETAR   ...   FALTA COMPLETAR   ...   FALTA COMPLETAR
+        Solução/lição:
+            O "id" dos LabelButton estavam entre aspas...Deve ser SEM ASPAS. Assim "unidade_kg" --> unidade_kg , etc...
+    . Informar a data : OK
+
+41. Adiconar Venda no banco de Dados:
+    . Construir a funcionalidade
+        . Coletardados selecionados: Cliente, Produto, Data, Unidade, Preço Total, Quantidade Total
+        . Gravar no Banco de Dados "request post"
+        . Mostrar a venda na homepage (Banser inicial)
+            . Criar o banner = BennerVenda() para a nova venda
+            . Inluir na lista de vendas e mostrar na homepage
+        . Atualizar Total de Vendas do usuario/vendedor
+
+42. Corrigindo o Bug da HomePage. (17/10/2022)
+    . O problema: Quando se entra no Perfil do Usuário não está aparecendo as compras dele.
+        1. Precisou corrigir a busca da Venda
+              . retirar o [1:] do dicionário geral de vendas, e
+              . no for venda em vendas mudar para id_venda em vendas, e
+                . pegar a venda para cada id_venda
+
+        2. Ajustar o bug de formatação do banner: O campo preco tinha um .2f que não foi aceito.
+            solução: Usar float() para a formataćão do preco no banner.
+                     Fiz a mesma cois para quantidade, embora atualmente fosse desnecessário poi não havia formatação numérica.
+
+43. Página Todas as Vendas. (18/10/2022)
+    . Criar a funcionalidade de ver todas as Vendas da Empresa
+    . Disparado a partir de um botão na página de "ajustes"
+
+
+44. Corrigindo Vendas Duplicadas(em Toas as Vendas) e Criando Página Vendas Outros Vendedores(da Equipe?). (19/10/2022)
+    . Está duplicando as vendas a cada ida para todasvendaspage.
+        Solução: Limpar os widget's já carregados  no início e antes de carregar novos widgets em todasvendaspage.
+                 Atencão ao "listas_vendas.children", usado para seleciionar os widgets existentes.
+     . Criar Pagina para mostrar as vendas de outros vendedores.
+        . Criar a pagina "vendasvendedorpage"
+        . Alterar o "on_release" do botão(ImageButton) voltar. Não é mais app.sair_todas_vendas()
+        . *** VERIFICAR ONDE FOI CRIADO  "app.sair_todas_vendas()"
+
+45. Carregandoas Informações dos Outros Vendedores
+    . A partir da tela da equipe: Clicando no ImageButton/LabelButton abrir as vendas daquele vendedor.
+        . o Ícone do usuário deve  ser carregado.
+
+46. Ajeitando o Botão Voltar:
+    .
+
+47. Corriginto Vendas  Duplicadas em Vendas Vendedores.
+    .  Usar a Mesma estratégia de todas as vendas:
+        Limpar a Lista de Vendas antes de carregá-la.
+
+48. Criando as REgras de Segurança de Dados"
+    . Editar Regras no BS:
+        1. O usuário tem que ler e modificar as informações dele;
+            incluir a regra:
+            "proximo_id_vendedor": {
+                ".read": "auth": "auth.uid !== null",
+                ".write":  "auth": "auth.uid !== null",
+                },
+        2. Permitir a leitura do BD -> sś de o usuario está buscando pelo ID_VENDEDOR;
+            ".read": "query.OrderByChild" == 'id_vendedor'"
+            ".indexOn": ["id_vendedor"],
+        3. QQ usuário logao na plataforma pode ler e modificar o proximo_id_vendedor
+            incluir a regra:
+            "$uid": {
+                ".read": "$uid === auth.uid",
+                ".write": "$uid === auth.uid",
+                },
+
+49. Implementaćão das regras de acesso ao BD(Firebase: "aplicativosvendasint") criadas nas aula anterior:
+    .
+
+50.  Encerrando o Aplicativo
+
+51. Deploy Android: Deploy Android - Criando uma conta no GitHub e Criando um repositório
+    1. gh auth login :  a partir do diretorio /do/github/
+        para as caracteristica:
+            a. Account what you want to log into: GitHub.com
+            b. If you want to re-authenticate: Yes
+            c. Preferred protocol for Git operations: HTTPS
+            d. Authenticate Git with your credentials?: No
+            e. How would you like to authenticate GitHub CLI?: Login with a web browser
+            First copy your one-time code: D6f4-64c5
+            Press Enter to open github.com in your browser...
+            *** Aqui abre oweb browser e,
+                1. colar o código one-time copiado
+                2. autenticar/autorizar
+            Gtk-Message: 11:09:40.663: Failed to load module "canberra-gtk-module"
+            Gtk-Message: 11:09:40.665: Failed to load module "canberra-gtk-module"
+            ✓ Authentication complete.
+            - gh config set -h github.com git_protocol https
+            ✓ Configured git protocol
+            ✓ Logged in as flaviols
+    2. Criar repositório no GitHub
+    3. Clonar o repositório do GitHub para o diretorio local /do/github/<diretorio>
+        . URL copiada do GitHub
+        . URL ..workspace/do/github
+        é gerado o repositório local ..workspace/do/github/<repositorio clonado>
+    4. copiar todos os diretorios/arquivos do projeto para a pasta workspace/do/github/<repositorio clonado>
+    5. commit
+        . informação sumária da alteração: Obrigatório para liberar o botão: commit to main
+        . uma descrição
+        . Usar o botão: commit to main
+    6 Executar "Fetch orign" para subir as alterações para o reposiório no GitHub.
+
+52. Deploy Android: Alterações de nosso código em Python.
+    Apenas para entender como se faz.
+    1. Objetivo: Garantir o acesso à páginas https:
+        1. Incluir as classes: os(import os) e certifi(import certifi)
+        2. Disponibilizar no ambiente via os.envirn["SSL_CERT_FILE"] = certifi.where()
+        3. O programa roda sem essas modificações, mas são necessáris para a app no celular fazer as requisições.
+
+53. Deploy Android: Transformar ocódigo Python em App
+    1. login noLinux(ubuntu)
+    2. Instalar todas as bibliotecas necessárias
+       $ sudo apt install -y autoconf libtool zlib1g-dev libncurses5-dev libncursesw5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev --reinstall
+    3. Instalar conversor Python para C
+       $ pip3 install --user --upgrade Cython==0.29.19 virtualenv
+    4. Entrar no configurações(settings) e eliminar as configuraćões para economia de energia(power)...etc..
+
+    5. Editar o .bashrc <cntrl>+<h>
+        # Add buildozer to PATH for scripting. Make sure this is the last PATH variable change. No final do arquivo
+        export PATH=$PATH:~/.local/bin
+    6. Instalar o buildozer
+        $ pip3 install --user --upgrade buildozer
+
+    12. Clonar o aplicativo do git para o home:
+        1. obter a senha no https:\github\flaviols\aplicativovendasint ... profilesetttings\developer...\generate... -->copiar
+        2. No terminal, clonar: https://github.com/flaviols/aplicativovendasint
+        3. Informar o usuário
+        4. Informar a senha gerada no passo 1
+        * É gerado um diretorio: aplicativovendasint no diretorio raiz.
+    13. Entrar no diretorio aplicativovendasint gerado.
+    14. executar buildozer.init para criar um arquivo de inicialização
+       Então, nesse diretório aparece o novo arquivo: buildozer.spec.
+    13. Editar o arquivo buildozer.spec e fazer as customizaćões necessáras
+        .
+        .
+        .
+        .
+        .
+        . etc...
+    14. Conectar um smartphone android ao PC via cabo USB.
+    15. Entrar no modo de desenvolvedor(clicar 7 vezes no numero da versão)
+    15. Habilitar "manter o modo desenvolvedor ativo" sempreativo
+    16. Habilitar "Depuração USB"
+    17. Verificar se o Celular estásendo detectado como usb
+    18. executar flavio@ubuntuavell:~$ buildozer android debug deploy run logcat
+
+
+
+***  OK OK OK ! ! !
+
+
+
+
+* PARA UMA FUNÇÃO QUE ESTA SENDO COMANDADA  NO on_release, receber uma informaćão como parâmetro, TEMOS QUE USAR O PARTIAL.
+    ex.:  on_release=partial(main_app.carregar_vendas_vendedor, id_vendedor)
+
+    * e, QUANDO SE USA O partial, NA DEFINICAO DA FUNCAO EXECUTADA DEVE TER O *args 9para não dar BUG)
