@@ -1,4 +1,4 @@
-<ListarVendedoresPage>:
+<ListarCompradoresPage>:
 
     FloatLayout:
         canvas:
@@ -7,7 +7,7 @@
                 pos: self.pos
                 source: "icones/bg1.png"
 
-        # lista de vendedores
+        # lista de compradores
         ScrollView:
             pos_hint: {"right": 1, "top": 0.9}
             size_hint: (1, 0.83)
@@ -15,7 +15,7 @@
 #            size_hint: 1, 0.20
             GridLayout:
                 cols: 1
-                id: lista_vendedores
+                id: lista_compradores
                 size_hint_y: None
                 spacing: (2, 2)
                 height: self.minimum_height

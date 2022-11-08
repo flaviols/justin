@@ -16,10 +16,10 @@
             pos_hint: {"right": 0.8, "top": 0.95 }
             size_hint: 0.55, 0.15
             bold: True
-            text: "id do vendedor"
-#            id: app.id_vendedor
+            text: "id do comprador"
+#            id: app.id_comprador
 ##            text: "ID:"   id
-            id: id_vendedor
+            id: id_comprador
 
         # Trocar foto perfil
         ImageButton:
@@ -33,29 +33,29 @@
             text: "Trocar Foto"
             on_release: app.trocar_tela("fotoperfilpage")
 
-        # Acompanhar Vendedor
+        # Acompanhar comprador
         ImageButton:
             pos_hint: {"right": 0.77 , "top": 0.6}
             size_hint: 0.5, 0.07
-            source: "icones/adicionar_vendedor.png"
-            on_release: on_release: app.trocar_tela("adicionarvendedorpage")
+            source: "icones/adicionar_comprador.png"
+            on_release: on_release: app.trocar_tela("adicionarcompradorpage")
         LabelButton:
             pos_hint: {"right": 0.77 , "top": 0.53}
             size_hint: 0.5, 0.05
-            text: "Vendedor"
-            on_release: app.trocar_tela("adicionarvendedorpage")
+            text: "comprador"
+            on_release: app.trocar_tela("adicionarcompradorpage")
 
-        # Ver todas as vendas
+        # Ver todas as compras
         ImageButton:
             pos_hint: {"right": 0.77 , "top": 0.40}
             size_hint: 0.5, 0.07
-            source: "icones/vendas_empresa.png"
-            on_release: on_release: app.carregar_todas_vendas()
+            source: "icones/compras_empresa.png"
+            on_release: on_release: app.carregar_todas_compras()
         LabelButton:
             pos_hint: {"right": 0.77 , "top": 0.33}
             size_hint: 0.5, 0.05
-            text: "Vendas"
-            on_release: app.carregar_todas_vendas()
+            text: "compras"
+            on_release: app.carregar_todas_compras()
 
         # Voltar para a Home Page
         FloatLayout:

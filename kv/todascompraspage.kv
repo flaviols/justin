@@ -1,4 +1,4 @@
-<TodasVendasPage>:
+<TodasComprasPage>:
     FloatLayout:
         canvas:
             Rectangle:
@@ -14,11 +14,11 @@
                 source: "icones/botao_fino.png"
         pos_hint: {"right": 0.8, "top": 0.95 }
         size_hint: (0.55, 0.15)
-        text: "Total de Vendas:R$ 0"
-        id: label_total_vendas
+        text: "Total de compras:R$ 0"
+        id: label_total_compras
         markup: True
 
-    # lista de vendas
+    # lista de compras
     ScrollView:
         pos_hint: {"right": 1, "top": 0.75}
         size_hint: (1, 0.63)
@@ -26,7 +26,7 @@
 #            size_hint: 1, 0.20
         GridLayout:
             cols: 1
-            id: lista_vendas
+            id: lista_compras
             size_hint_y: None
             spacing: (2, 2)
             height: self.minimum_height
@@ -49,4 +49,4 @@
             size_hint: 0.2, 0.8
             source: "icones/voltar.png"
             #text: "Voltar"
-            on_release: app.sair_todas_vendas()
+            on_release: app.sair_todas_compras()

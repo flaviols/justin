@@ -9,11 +9,11 @@ class AjustesPage(Screen):
     pass
 
 
-class IncluirVendaPage(Screen):
+class IncluirCompraPage(Screen):
     pass
 
 
-class ListarVendedoresPage(Screen):
+class ListarCompradoresPage(Screen):
     pass
 
 
@@ -21,15 +21,15 @@ class FotoPerfilPage(Screen):
     pass
 
 
-class AdicionarVendedorPage(Screen):
+class AdicionarCompradorPage(Screen):
     pass
 
 
-class TodasVendasPage(Screen):
+class TodasComprasPage(Screen):
     pass
 
 class LoginPage(Screen):
     pass
 
-class VendasVendedorPage(Screen):
+class ComprasCompradorPage(Screen):
     pass

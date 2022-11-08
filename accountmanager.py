@@ -33,24 +33,25 @@ class AccountManager:
             except:
                 pass
 
-            # Busca o próximo ID vendedor
-            proximo_id = requests.get(f"https://aplicativovendasint-default-rtdb.firebaseio.com/"
-                                      f"proximo_id_vendedor.json?auth={id_token}")
-            id_vendedor = proximo_id.json()
+            # Busca o próximo ID comprador
+
+            proximo_id = requests.get(f"https://justin-55643-default-rtdb.firebaseio.com/"
+                                      f"proximo_id_comprador.json?auth={id_token}")
+            id_comprador = proximo_id.json()
             # Atualiza / Cria Usuario
-            link = f"https://aplicativovendasint-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
-            info_usuario = f'{{"id_vendedor": "{id_vendedor}", "avatar": "foto3.png", ' \
-                           f'"equipe": "", "total_vendas": "0", "vendas": ""}}'
+            link = f"https://justin-55643-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
+            info_usuario = f'{{"id_comprador": "{id_comprador}", "avatar": "foto3.png", ' \
+                           f'"equipe": "", "total_compras": "0", "compras": ""}}'
 
             # O PATCH É para criar um usuário com a chave(local_Id) que queremos. O Post cria com uma chave
             # inédita para o firebase
             atualiza_ou_cria_usuario = requests.patch(link, data=info_usuario)
 
-            # Atualizar o valor do "proximo_id_vendedor"
-            link = f"https://aplicativovendasint-default-rtdb.firebaseio.com/.json?auth={id_token}"
-            proximo_id = int(id_vendedor) + 1
-            proximo_id_dic = f'{{"proximo_id_vendedor": "{proximo_id}"}}'
-            atualiza_id_proximo_vendedor = requests.patch(link, data=proximo_id_dic)
+            # Atualizar o valor do "proximo_id_comprador"
+            link = f"https://justin-55643-default-rtdb.firebaseio.com/.json?auth={id_token}"
+            proximo_id = int(id_comprador) + 1
+            proximo_id_dic = f'{{"proximo_id_comprador": "{proximo_id}"}}'
+            atualiza_id_proximo_comprador = requests.patch(link, data=proximo_id_dic)
             # Indo para a HOMEPAGE
             main_app.carregar_infos_usuario()
             main_app.trocar_tela("homepage")

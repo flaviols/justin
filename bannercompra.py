@@ -5,7 +5,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.graphics import Color, Rectangle
 
 
-class BannerVenda(GridLayout):
+class Bannercompra(GridLayout):
 
     def __init__(self, **kwargs):
         self.rows = 1
@@ -15,7 +15,7 @@ class BannerVenda(GridLayout):
             Color(rgb=(0, 0, 0, 1))
             self.rec = Rectangle(size=self.size, pos=self.pos)
         self.bind(pos=self.atualizar_rec, size=self.atualizar_rec)
-        # kwargs = {"cliente": "Mundial", "foto_cliente": "mundial.png", "produto": "arroz", ...} # todos os dados de uma venda
+        # kwargs = {"cliente": "Mundial", "foto_cliente": "mundial.png", "produto": "arroz", ...} # todos os dados de uma compra
         cliente = kwargs["cliente"]
         foto_cliente = kwargs["foto_cliente"]
         data = kwargs["data"]

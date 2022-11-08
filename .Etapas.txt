@@ -60,12 +60,12 @@
     ________________________________________________________________________________
 
 16. Criar o banco de dados no Firebase
-    Foi criados os vendedores 1 e 2 com os seus dados e das vendas efetuadas para teste.
+    Foi criados os compradores 1 e 2 com os seus dados e das compras efetuadas para teste.
 
 17. Criando o Banco de Dados Firebase
     Alterar App para buscar informaćões no Firebase
     main.py > def on_start(self):
-                    requisicao = requests.get(f"https://aplicativovendasint
+                    requisicao = requests.get(f"https://justin
 :-default-rtdb.firebaseio.com/{self.id_usuario}.json")
                     print(requisicao.json())
 
@@ -75,14 +75,14 @@
     Buscar as informaćões usando self.root.ids...
 
 20. Preparando um ScrollView
-    Preparar  para mostrar as informações para o bbannervenda cuja classe ainda vai ser criada
+    Preparar  para mostrar as informações para o bbannercompra cuja classe ainda vai ser criada
     Preparar o .kv com o scrollview(com o GridLayout e os parametros do scrolling)
-    criar uma classe para construir  o bannervenda
+    criar uma classe para construir  o bannercompra
     importar a nova classe o main.py
 
 21. Adicionando o Banner por meio do Python
 
-22. Criando nosso widget Personalizado - Banner de Vendas
+22. Criando nosso widget Personalizado - Banner de compras
 
 23. Lista de Fotos de Perfil
 
@@ -133,29 +133,29 @@
 
 
 33. Criando um ID Compartilhável
-       . Quando criar o usuário cria também o Id_vendedor
-            . Criar um campo id_vendedor para cada usuário
+       . Quando criar o usuário cria também o Id_comprador
+            . Criar um campo id_comprador para cada usuário
             . Criar um registro/objeto/campo no banco de dados para guardar o "proximo_id_usuário"
-                . Fazer uma requisição para buscar o vendedor (proximo)
+                . Fazer uma requisição para buscar o comprador (proximo)
                 . {***} tentei uma atualizaçào direta nos parâmetros do requests.patch,MAS NÃO CONSEGUI.
                 .Tive que usar a dupla chave f'{{"x": "{var}"}' para viabilizar a "tradućão do "var""
 
-34. Preenchendo Total de Vendas e ID com Informaćões do Banco de Dados
+34. Preenchendo Total de compras e ID com Informaćões do Banco de Dados
     .Na "main.py"
-         #   preencher o total de vendas
+         #   preencher o total de compras
          #   preencher o id Único do Usuário
 
-35. Página de Adicionar Vendedor
-    . Editar o .kv --> adiconarvendedorpage
+35. Página de Adicionar comprador
+    . Editar o .kv --> adiconarcompradorpage
 
-36. Criando Banner Vendedor e Editando o Banco de Dados:
+36. Criando Banner comprador e Editando o Banco de Dados:
     . ????????????????????
 
-37. Adicionar Vendedor à Equipe
+37. Adicionar comprador à Equipe
     . ????????????????????????
 
-38. Tela Adiconar Vendas
-    .Construir/Detalhar a página de Adicionar Vendas. (As funiconalidades serão construídas na próxima aula)
+38. Tela Adiconar compras
+    .Construir/Detalhar a página de Adicionar compras. (As funiconalidades serão construídas na próxima aula)
         . Altera a direção(horizontal) do Scrolling para selecionar cliente e produto.
         . Unidades de medida · UN - Unidade (padrão) · CT - Cartela (1) · CX - Caixa (1) · DZ - Duzia (12) · GS - Grosa (144)
                              · PA - Par (2) · PÇ - Peça (1) · PR - Par (2)
@@ -170,70 +170,70 @@
             O "id" dos LabelButton estavam entre aspas...Deve ser SEM ASPAS. Assim "unidade_kg" --> unidade_kg , etc...
     . Informar a data : OK
 
-41. Adiconar Venda no banco de Dados:
+41. Adiconar compra no banco de Dados:
     . Construir a funcionalidade
         . Coletardados selecionados: Cliente, Produto, Data, Unidade, Preço Total, Quantidade Total
         . Gravar no Banco de Dados "request post"
-        . Mostrar a venda na homepage (Banser inicial)
-            . Criar o banner = BennerVenda() para a nova venda
-            . Inluir na lista de vendas e mostrar na homepage
-        . Atualizar Total de Vendas do usuario/vendedor
+        . Mostrar a compra na homepage (Banser inicial)
+            . Criar o banner = Bennercompra() para a nova compra
+            . Inluir na lista de compras e mostrar na homepage
+        . Atualizar Total de compras do usuario/comprador
 
 42. Corrigindo o Bug da HomePage. (17/10/2022)
     . O problema: Quando se entra no Perfil do Usuário não está aparecendo as compras dele.
-        1. Precisou corrigir a busca da Venda
-              . retirar o [1:] do dicionário geral de vendas, e
-              . no for venda em vendas mudar para id_venda em vendas, e
-                . pegar a venda para cada id_venda
+        1. Precisou corrigir a busca da compra
+              . retirar o [1:] do dicionário geral de compras, e
+              . no for compra em compras mudar para id_compra em compras, e
+                . pegar a compra para cada id_compra
 
         2. Ajustar o bug de formatação do banner: O campo preco tinha um .2f que não foi aceito.
             solução: Usar float() para a formataćão do preco no banner.
                      Fiz a mesma cois para quantidade, embora atualmente fosse desnecessário poi não havia formatação numérica.
 
-43. Página Todas as Vendas. (18/10/2022)
-    . Criar a funcionalidade de ver todas as Vendas da Empresa
+43. Página Todas as compras. (18/10/2022)
+    . Criar a funcionalidade de ver todas as compras da Empresa
     . Disparado a partir de um botão na página de "ajustes"
 
 
-44. Corrigindo Vendas Duplicadas(em Toas as Vendas) e Criando Página Vendas Outros Vendedores(da Equipe?). (19/10/2022)
-    . Está duplicando as vendas a cada ida para todasvendaspage.
-        Solução: Limpar os widget's já carregados  no início e antes de carregar novos widgets em todasvendaspage.
-                 Atencão ao "listas_vendas.children", usado para seleciionar os widgets existentes.
-     . Criar Pagina para mostrar as vendas de outros vendedores.
-        . Criar a pagina "vendasvendedorpage"
-        . Alterar o "on_release" do botão(ImageButton) voltar. Não é mais app.sair_todas_vendas()
-        . *** VERIFICAR ONDE FOI CRIADO  "app.sair_todas_vendas()"
+44. Corrigindo compras Duplicadas(em Toas as compras) e Criando Página compras Outros compradores(da Equipe?). (19/10/2022)
+    . Está duplicando as compras a cada ida para todascompraspage.
+        Solução: Limpar os widget's já carregados  no início e antes de carregar novos widgets em todascompraspage.
+                 Atencão ao "listas_compras.children", usado para seleciionar os widgets existentes.
+     . Criar Pagina para mostrar as compras de outros compradores.
+        . Criar a pagina "comprascompradorpage"
+        . Alterar o "on_release" do botão(ImageButton) voltar. Não é mais app.sair_todas_compras()
+        . *** VERIFICAR ONDE FOI CRIADO  "app.sair_todas_compras()"
 
-45. Carregandoas Informações dos Outros Vendedores
-    . A partir da tela da equipe: Clicando no ImageButton/LabelButton abrir as vendas daquele vendedor.
+45. Carregandoas Informações dos Outros compradores
+    . A partir da tela da equipe: Clicando no ImageButton/LabelButton abrir as compras daquele comprador.
         . o Ícone do usuário deve  ser carregado.
 
 46. Ajeitando o Botão Voltar:
     .
 
-47. Corriginto Vendas  Duplicadas em Vendas Vendedores.
-    .  Usar a Mesma estratégia de todas as vendas:
-        Limpar a Lista de Vendas antes de carregá-la.
+47. Corriginto compras  Duplicadas em compras compradores.
+    .  Usar a Mesma estratégia de todas as compras:
+        Limpar a Lista de compras antes de carregá-la.
 
 48. Criando as REgras de Segurança de Dados"
     . Editar Regras no BS:
         1. O usuário tem que ler e modificar as informações dele;
             incluir a regra:
-            "proximo_id_vendedor": {
+            "proximo_id_comprador": {
                 ".read": "auth": "auth.uid !== null",
                 ".write":  "auth": "auth.uid !== null",
                 },
-        2. Permitir a leitura do BD -> sś de o usuario está buscando pelo ID_VENDEDOR;
-            ".read": "query.OrderByChild" == 'id_vendedor'"
-            ".indexOn": ["id_vendedor"],
-        3. QQ usuário logao na plataforma pode ler e modificar o proximo_id_vendedor
+        2. Permitir a leitura do BD -> sś de o usuario está buscando pelo ID_comprador;
+            ".read": "query.OrderByChild" == 'id_comprador'"
+            ".indexOn": ["id_comprador"],
+        3. QQ usuário logao na plataforma pode ler e modificar o proximo_id_comprador
             incluir a regra:
             "$uid": {
                 ".read": "$uid === auth.uid",
                 ".write": "$uid === auth.uid",
                 },
 
-49. Implementaćão das regras de acesso ao BD(Firebase: "aplicativosvendasint") criadas nas aula anterior:
+49. Implementaćão das regras de acesso ao BD(Firebase: "aplicativoscomprasint") criadas nas aula anterior:
     .
 
 50.  Encerrando o Aplicativo
@@ -291,12 +291,12 @@
         $ pip3 install --user --upgrade buildozer
 
     12. Clonar o aplicativo do git para o home:
-        1. obter a senha no https:\github\flaviols\aplicativovendasint ... profilesetttings\developer...\generate... -->copiar
-        2. No terminal, clonar: https://github.com/flaviols/aplicativovendasint
+        1. obter a senha no https:\github\flaviols\justin ... profilesetttings\developer...\generate... -->copiar
+        2. No terminal, clonar: https://github.com/flaviols/justin
         3. Informar o usuário
         4. Informar a senha gerada no passo 1
-        * É gerado um diretorio: aplicativovendasint no diretorio raiz.
-    13. Entrar no diretorio aplicativovendasint gerado.
+        * É gerado um diretorio: justin no diretorio raiz.
+    13. Entrar no diretorio justin gerado.
     14. executar buildozer.init para criar um arquivo de inicialização
        Então, nesse diretório aparece o novo arquivo: buildozer.spec.
     13. Editar o arquivo buildozer.spec e fazer as customizaćões necessáras
@@ -321,6 +321,6 @@
 
 
 * PARA UMA FUNÇÃO QUE ESTA SENDO COMANDADA  NO on_release, receber uma informaćão como parâmetro, TEMOS QUE USAR O PARTIAL.
-    ex.:  on_release=partial(main_app.carregar_vendas_vendedor, id_vendedor)
+    ex.:  on_release=partial(main_app.carregar_compras_comprador, id_comprador)
 
     * e, QUANDO SE USA O partial, NA DEFINICAO DA FUNCAO EXECUTADA DEVE TER O *args 9para não dar BUG)

@@ -1,4 +1,4 @@
-<IncluirVendaPage>:
+<IncluirCompraPage>:
     FloatLayout:
         canvas:
             Rectangle:
@@ -46,9 +46,9 @@
                 col_default_width: "90dp"
                 col_force_default: True
 
-#       Data   da Venda
+#       Data   da compra
         Label:
-            id: data_venda
+            id: data_compra
             pos_hint: {"right": 1, "top": 0.5 }
             size_hint: 1, 0.05
             bold: True
@@ -86,15 +86,15 @@
             pos_hint: {"right": 0.45, "top": 0.2 }
             size_hint: (0.4, 0.15)
 
-#       Incluir Venda
+#       Incluir compra
         LabelButton:
             canvas.before:
                 Rectangle:
                     size: self.size
                     pos: self.pos
                     source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
-            on_release: app.incluir_vendas()
-            text: "Incluir Venda"
+            on_release: app.incluir_compras()
+            text: "Incluir compra"
             pos_hint: {"right": 0.95, "top": 0.2 }
             size_hint: (0.4, 0.15)
 
